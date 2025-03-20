@@ -13,11 +13,5 @@ ports:
   6379/tcp: 6379
 map:
   - share:rw  # Redis hoiab oma andmebaasi ja konfiguratsioonifaile siia
-options:
-  requirepass: ""  # Redis parool
-  maxmemory_policy: "noeviction"  # Mälupoliitika
-schema:
-  requirepass: str?
-  maxmemory_policy: list(noeviction|allkeys-lru|volatile-lru|allkeys-random|volatile-random|volatile-ttl)
-hassio_api: true  # ⬅️ Lisatud, et võimaldada API kasutamist
-hassio_role: manager  # ⬅️ Lisatud, et võimaldada lisandmooduli valikute muutmist
+options: {}
+schema: {}
