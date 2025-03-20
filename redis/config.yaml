@@ -7,7 +7,6 @@ arch:
   - amd64
   - aarch64
   - armv7
-image: "ghcr.io/home-assistant/{arch}-base:3.19"
 startup: services
 boot: auto
 ports:
