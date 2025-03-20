@@ -1,17 +1,18 @@
 name: "Redis Persistent"
 version: "7.2.4"
 slug: "redis_persistent"
-description: "Redis add-on with persistent storage for Home Assistant"
+description: "Redis add-on with persistent local storage for Home Assistant"
 url: "https://redis.io"
 arch:
   - amd64
   - aarch64
   - armv7
+image: "ghcr.io/home-assistant/{arch}-base:3.19"
 startup: services
 boot: auto
 ports:
   6379/tcp: 6379
 map:
-  - addon_configs:rw
+  - data:rw
 options: {}
 schema: {}
