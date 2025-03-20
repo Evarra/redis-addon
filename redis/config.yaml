@@ -16,7 +16,11 @@ map:
   - config:rw
   - homeassistant_config:rw
   - media:rw
-  - share:rw
+  - share:rw  # Lisatud, et võimaldada salvestamist väljaspool konteinerit
   - ssl
-options: {}
-schema: {}
+options:
+  requirepass: ""  # Lisatud võimalus Redis-i salasõna määramiseks
+  maxmemory_policy: "noeviction"  # Lisatud mälupoliitika seade
+schema:
+  requirepass: str?
+  maxmemory_policy: list(noeviction|allkeys-lru|volatile-lru|allkeys-random|volatile-random|volatile-ttl)
