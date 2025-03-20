@@ -25,18 +25,25 @@ protected-mode no
 EOL
 fi
 
-# Kui Home Assistant add-on konfiguratsioon sisaldab seadistusi, lisa need
+# Kui SUPERVISOR_TOKEN on määratud, proovi laadida lisandmooduli konfiguratsiooni
 if [ -n "$SUPERVISOR_TOKEN" ]; then
-    HA_OPTIONS=$(curl -s -H "Authorization: Bearer $SUPERVISOR_TOKEN" http://supervisor/options)
-    REDIS_PASSWORD=$(echo "$HA_OPTIONS" | jq -r '.requirepass // empty')
-    MAX_MEMORY_POLICY=$(echo "$HA_OPTIONS" | jq -r '.maxmemory_policy // empty')
+    HA_OPTIONS=$(curl -s -H "Authorization: Bearer $SUPERVISOR_TOKEN" http://supervisor/options || echo "")
 
-    if [ -n "$REDIS_PASSWORD" ]; then
-        echo "requirepass ${REDIS_PASSWORD}" >> "${CONF_FILE}"
-    fi
+    # Veendu, et HA_OPTIONS sisaldab kehtivat JSON-andmeid
+    if echo "$HA_OPTIONS" | jq -e . > /dev/null 2>&1; then
+        REDIS_PASSWORD=$(echo "$HA_OPTIONS" | jq -r '.requirepass // empty')
+        MAX_MEMORY_POLICY=$(echo "$HA_OPTIONS" | jq -r '.maxmemory_policy // empty')
 
-    if [ -n "$MAX_MEMORY_POLICY" ]; then
-        echo "maxmemory-policy ${MAX_MEMORY_POLICY}" >> "${CONF_FILE}"
+        # Lisame ainult juhul, kui väärtus on määratud
+        if [ -n "$REDIS_PASSWORD" ] && [ "$REDIS_PASSWORD" != "empty" ]; then
+            echo "requirepass ${REDIS_PASSWORD}" >> "${CONF_FILE}"
+        fi
+
+        if [ -n "$MAX_MEMORY_POLICY" ] && [ "$MAX_MEMORY_POLICY" != "empty" ]; then
+            echo "maxmemory-policy ${MAX_MEMORY_POLICY}" >> "${CONF_FILE}"
+        fi
+    else
+        echo "Hoiatus: Ei suutnud laadida Home Assistant lisandmooduli valikuid!"
     fi
 fi
 
