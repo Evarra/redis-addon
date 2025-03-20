@@ -2,6 +2,7 @@
 set -e
 
 DATA_DIR=/addon_configs/redis/data
+CONF_FILE="${DATA_DIR}/redis.conf"
 
 # Kui conf-fail puudub, loo vaikimisi konfiguratsioon
 if [ ! -f "${CONF_FILE}" ]; then
