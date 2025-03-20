@@ -12,6 +12,7 @@ boot: auto
 ports:
   6379/tcp: 6379
 map:
-  - data
+  - type: addon_config
+    read_only: False
 options: {}
 schema: {}
