@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-DATA_DIR=/data
+DATA_DIR=/addon_configs/redis/data
 mkdir -p "${DATA_DIR}"
 
 echo "Starting Redis with persistence at ${DATA_DIR}"
