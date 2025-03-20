@@ -16,7 +16,7 @@ port 6379
 appendonly yes
 appendfilename "appendonly.aof"
 dbfilename "dump.rdb"
-dir ${PERSISTENT_DIR}  # Redis-i andmefailid salvestatakse siia
+dir ${PERSISTENT_DIR} 
 save 900 1
 save 300 10
 save 60 10000
