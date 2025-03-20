@@ -18,6 +18,7 @@ save 900 1
 save 300 10
 save 60 10000
 loglevel notice
+protected-mode no
 EOL
 fi
 
