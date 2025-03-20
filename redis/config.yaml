@@ -19,3 +19,5 @@ options:
 schema:
   requirepass: str?
   maxmemory_policy: list(noeviction|allkeys-lru|volatile-lru|allkeys-random|volatile-random|volatile-ttl)
+hassio_api: true  # ⬅️ Lisatud, et võimaldada API kasutamist
+hassio_role: manager  # ⬅️ Lisatud, et võimaldada lisandmooduli valikute muutmist
