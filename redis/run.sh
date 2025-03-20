@@ -22,6 +22,6 @@ protected-mode no
 EOL
 fi
 
-echo "Redis käivitamine conf-failiga ${CONF_FILE}"
+echo "Redis start käivitamine conf-failiga ${CONF_FILE}"
 
 exec redis-server "${CONF_FILE}"
