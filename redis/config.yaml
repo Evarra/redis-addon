@@ -12,7 +12,10 @@ boot: auto
 ports:
   6379/tcp: 6379
 map:
-  - type: addon_config
-    read_only: False
+  - addon_config:rw
+  - homeassistant_config:rw
+  - media:rw
+  - share:rw
+  - ssl
 options: {}
 schema: {}
